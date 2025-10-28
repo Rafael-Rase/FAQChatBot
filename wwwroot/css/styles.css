@@ -1,0 +1,346 @@
+﻿/* Estilos Gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #000000; /* Fundo preto */
+    color: #ffffff; /* Letras brancas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container Principal */
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px; /* Largura máxima para telas grandes */
+    background-color: #111111; /* Cor de fundo um pouco mais clara para a área 
+principal */
+    border-radius: 10px;
+    overflow: hidden; /* Garante que nada saia do container */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Lado Esquerdo: Logo e Frases */
+.logo-text-area { /* Mudamos de 'logo-area' para 'logo-text-area' */
+    flex: 1; /* Ocupa 50% em telas grandes */
+    display: flex;
+    flex-direction: column; /* Para empilhar o h1, img e p */
+    justify-content: center;
+    align-items: center;
+    background-color: #000000; /* Fundo preto puro */
+    padding: 40px;
+    text-align: center;
+    color: #ffffff; /* Garante que o texto seja branco nesta área */
+}
+
+    .logo-text-area h1 {
+        font-size: 3em; /* Tamanho maior para o título principal */
+        margin-bottom: 20px; /* Espaço abaixo do título */
+        font-weight: bold;
+        color: #ffffff; /* Cor branca para o título */
+    }
+
+    .logo-text-area img {
+        max-width: 160%; /* Ajuste a largura máxima da imagem */
+        height: auto;
+        margin-bottom: 20px; /* Espaço abaixo da imagem */
+    }
+
+    .logo-text-area p {
+        font-size: 1.3em; /* Tamanho para a frase de marketing */
+        line-height: 1.5;
+        color: #ffffff; /* Cor branca para a frase */
+    }
+
+
+/* Lado Direito: Formulário de Login (sem alterações significativas aqui) */
+.login-area {
+    flex: 1; /* Ocupa 50% em telas grandes */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+    background-color: #1a1a1a; /* Fundo mais escuro para a caixa de login */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+    .login-box h2 {
+        margin-bottom: 25px;
+        font-size: 24px;
+        color: #9c45e8; /* Cor roxa para o título */
+        text-align: center;
+    }
+
+/* Grupos de Input */
+.input-group {
+    margin-bottom: 20px;
+}
+
+    .input-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        background-color: #2a2a2a; /* Fundo escuro para o input */
+        color: #ffffff;
+        font-size: 16px;
+        transition: border-color 0.3s;
+    }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #9c45e8;
+        }
+
+/* --- ESTILO PARA O LINK "ESQUECEU A SENHA" --- */
+
+.forgot-password-link {
+    display: block; /* Garante que o link ocupe sua própria linha */
+    text-align: right; /* Alinha o link à direita do formulário */
+    font-size: 0.9em; /* Tamanho da fonte um pouco menor */
+    margin-top: 10px; /* Espaço acima do link */
+    margin-bottom: 20px; /* Espaço abaixo do link, antes do botão de login */
+    /* Estilo padrão: discreto e legível */
+    color: #aaaaaa;
+    text-decoration: none; /* Remove o sublinhado padrão */
+
+    transition: color 0.3s ease; /* Transição suave para o efeito hover */
+}
+
+    .forgot-password-link:hover {
+        color: #9c45e8; /* Cor roxa vibrante (sua cor principal) ao passar o mouse */
+        text-decoration: underline; /* Adiciona sublinhado no hover para indicar que é 
+clicável */
+    }
+
+
+
+/* Botões */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background-color: #9c45e8; /* Cor roxa */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin-bottom: 15px;
+}
+
+    .btn-login:hover {
+        background-color: #b05cff;
+    }
+
+.signup-text {
+    text-align: center;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.btn-signup {
+    color: #9c45e8;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+    .btn-signup:hover {
+        text-decoration: underline;
+    }
+
+/* --- Responsividade (Media Queries) --- */
+
+@media (max-width: 768px) {
+    /* Em telas menores (tablets e celulares), o layout se torna uma coluna */
+    .container {
+        flex-direction: column;
+        width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+    }
+
+    /* Oculta o logo em telas muito pequenas, ou diminui seu padding */
+    .logo-text-area { /* Ajuste para a nova classe */
+        padding: 30px 20px;
+        min-height: 200px;
+        height: auto; /* Permite que a altura se ajuste ao conteúdo */
+    }
+
+        .logo-text-area h1 {
+            font-size: 2.2em; /* Reduz o tamanho do título em telas menores */
+            margin-bottom: 15px;
+        }
+
+        .logo-text-area img {
+            max-width: 70%; /* Ajuste a largura da imagem para telas menores */
+            margin-bottom: 15px;
+        }
+
+        .logo-text-area p {
+            font-size: 1em; /* Reduz o tamanho da frase em telas menores */
+        }
+
+    .login-area {
+        padding: 20px;
+    }
+
+    .login-box {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 500px) {
+    /* Ajustes para celulares */
+    .logo-text-area {
+        /* Garante que o conteúdo ainda esteja visível no mobile, mas pode ajustar o 
+padding */
+        padding: 20px 15px;
+    }
+
+        .logo-text-area h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .logo-text-area img {
+            max-width: 90%;
+            margin-bottom: 10px;
+        }
+
+        .logo-text-area p {
+            font-size: 0.9em;
+        }
+}
+
+.faq-section {
+    background-color: #1a1a1a;
+    padding: 30px;
+    border-radius: 10px;
+    margin-top: 30px;
+    color: #fff;
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #9c45e8;
+    font-size: 1.1em;
+    text-align: left;
+    padding: 10px 0;
+    cursor: pointer;
+    border-bottom: 1px solid #333;
+}
+
+    .faq-question:hover {
+        color: #fff;
+    }
+
+.faq-answer {
+    display: none;
+    padding: 10px;
+    color: #ccc;
+    border-left: 3px solid #9c45e8;
+    margin-bottom: 10px;
+}
+/* ===== MODAL FAQ ===== */
+.faq-modal {
+    display: none; /* Inicialmente escondido */
+    position: fixed;
+    z-index: 1000; /* Fica sobre tudo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7); /* Fundo escuro transparente */
+    justify-content: center;
+    align-items: center;
+}
+/* Caixa do conteúdo do modal */
+.faq-content {
+    background-color: #1a1a1a;
+    padding: 25px;
+    border-radius: 10px;
+    width: 550px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+    animation: fadeIn 0.3s ease-in-out;
+}
+/* Animação de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+/* Botão de fechar (X) */
+.close-faq {
+    color: #fff;
+    float: right;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .close-faq:hover {
+        color: #9c45e8;
+    }
+/* Estilo das perguntas do FAQ */
+.faq-item {
+    margin-bottom: 12px;
+}
+
+.faq-question {
+    width: 100%;
+    text-align: left;
+    background: #222;
+    color: #9c45e8;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .faq-question:hover {
+        background: #2e2e2e;
+    }
+
+.faq-answer {
+    display: none;
+    color: #ccc;
+    padding: 10px;
+    background: #111;
+    border-radius: 5px;
+    margin-top: 5px;
+    line-height: 1.4;
+}

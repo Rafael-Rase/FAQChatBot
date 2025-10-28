@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - ZeroUm Cursos</title>
+    <link rel="stylesheet" href="~/css/styles.css">
+</head>
+<body>
+    <div class="container">
+
+        <div class="logo-text-area">
+            <h1>Zero Um Cursos</h1>
+            <img src="~/images/logo_zero_um.png" alt="Logo ZeroUm Cursos - Desenvolva com
+Tecnologia">
+            <p>Desenvolva sua carreira em Tecnologia!</p>
+        </div>
+
+        <div class="login-area">
+            <div class="login-box">
+                <h2>Crie sua conta</h2>
+                <form id="cadastroForm">
+                    <div class="input-group">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" id="nome" name="nome" required
+                               placeholder="Seu nome">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="cpf_cadastro">CPF</label>
+                        <input type="cpf" id="cpf_cadastro" name="cpf" required
+                               placeholder="xxx.xxx.xxx-xx">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email_cadastro">E-mail</label>
+                        <input type="email" id="email_cadastro" name="email"
+                               required placeholder="seu@email.com">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="telefone_cadastro">Telefone</label>
+                        <input type="telefone" id="telefone_cadastro"
+                               name="telefone" required placeholder="(00) 00000-0000">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="senha_cadastro">Criar uma Senha</label>
+                        <input type="password" id="senha_cadastro" name="senha"
+                               required placeholder="Mínimo 6 caracteres">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="confirma_senha">Confirmar a Senha</label>
+                        <input type="password" id="confirma_senha"
+                               name="confirma_senha" required placeholder="Repita a senha">
+                    </div>
+
+                    <button type="submit" class="btn-login">
+                        Finalizar
+                        Cadastro
+                    </button>
+
+                    <p class="signup-text">
+                        Já tem uma conta? <a asp-controller="Home" asp-action="Index" class="btn-signup">Fazer Login</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="cadastro.js"></script>
+</body>
+</html>

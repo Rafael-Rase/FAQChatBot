@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha - Zero Um Cursos</title>
+    <link rel="stylesheet" href="~/css/styles.css">
+</head>
+<body>
+    <div class="container">
+
+        <div class="logo-text-area">
+            <h1>Zero Um Cursos</h1>
+            <img src="~/images/logo_zero_um.png" alt="Logo ZeroUm Cursos - Desenvolva com
+Tecnologia">
+            <p>Desenvolva sua carreira em Tecnologia!</p>
+        </div>
+
+        <div class="login-area">
+            <div class="login-box">
+                <h2>Recuperar Senha</h2>
+                <p class="description-text" style="color: #aaa; margin-bottom:
+25px;">
+                    Insira o e-mail associado à sua conta. Enviaremos um link para
+                    redefinição de senha.
+                </p>
+                <form id="recuperarSenhaForm">
+
+                    <div class="input-group">
+                        <label for="email_recuperacao">E-mail</label>
+                        <input type="email" id="email_recuperacao" name="email"
+                               required placeholder="seu@email.com">
+                    </div>
+
+                    <button type="submit" class="btn-login">
+                        Enviar Link de
+                        Redefinição
+                    </button>
+
+                    <p class="signup-text">
+                        <a asp-controller="Home" asp-action="Index" class="btn-signup">
+                            Voltar para o
+                            Login
+                        </a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="faq.js"></script>
+</body>
+</html>

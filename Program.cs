@@ -4,6 +4,10 @@ using FAQChatBot.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//permite conexão externa
+builder.WebHost.UseUrls("https://localhost:7260", "http://0.0.0.0:7260");
+
+
 // Registrar serviços
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -28,7 +32,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();

@@ -133,12 +133,16 @@
         <div class="sidebar">
             <h2>Zero Um Cursos</h2>
 
-            <a asp-controller="Home" asp-action="Dashboard" class="nav-link active">🎓 Meus Cursos</a>
-            <a asp-controller="Home" asp-action="Biblioteca" class="nav-link">📚 Biblioteca (Não disponível)</a>
-            <a asp-controller="Home" asp-action="Configuracoes" class="nav-link">⚙ Configurações (Não disponível)</a>
+            <a asp-controller="Home" asp-action="Dashboard" class="nav-link active">
+                🎓 Meus Cursos</a>
+            <a asp-controller="Home" asp-action="Dashboard" class="nav-link">
+                📚 Biblioteca (Não disponível)</a>
+            <a asp-controller="Home" asp-action="Dashboard" class="nav-link">
+                ⚙ Configurações (Não disponível)</a>
 
             <!-- Botão para abrir FAQ -->
-            <a href="#" class="nav-link" id="ajuda-link">❓ Ajuda</a>
+            <a href="#" class="nav-link" id="ajuda-link">
+                ❓ Ajuda</a>
 
             <!-- Link de logout -->
             <a asp-controller="Home" asp-action="Index" id="logout-link" class="nav-link" style="margin-top: auto; color: #ff6b6b;">
@@ -180,7 +184,7 @@
 
     <!-- Scripts -->
     <script src="~/js/meu-script.js"></script> <!-- Script do dashboard geral -->
-    <script src="~/js/faq.js"></script> <!-- Script do FAQ -->
+    <script src="~/js/FAQ.js"></script> <!-- Script do FAQ -->
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

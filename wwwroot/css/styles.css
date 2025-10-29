@@ -358,4 +358,18 @@ padding */
     align-items: center;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    transition: background-color 0.3
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 900;
+}
+
+    #libras-icon img {
+        width: 65%;
+        height: 65%;
+        object-fit: contain;
+    }
+
+    #libras-icon:hover {
+        background-color: #9c45e8;
+        transform: scale(1.05);
+    }
+

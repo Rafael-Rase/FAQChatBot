@@ -69,16 +69,35 @@ document.addEventListener("DOMContentLoaded", function () {
     const userInput = document.getElementById("user-input");
     const sendBtn = document.getElementById("send-btn");
 
+
+    // Histórico de perguntas e respostas
+    let historico = [];
+
+    // Estado atual do chatbot
+    let etapa = "boasVindas"; // boasVindas, perguntando, continuarOuParar, finalizar
+
+ 
     function addMessage(sender, text) {
+        const msgContainer = document.createElement("div");
+        msgContainer.style.display = "flex";
+        msgContainer.style.justifyContent = sender === "bot" ? "flex-start" : "flex-end";
+        msgContainer.style.margin = "5px 0";
+
         const msg = document.createElement("div");
-        msg.style.margin = "5px 0";
-        msg.style.color = sender === "bot" ? "#9c45e8" : "#fff";
-        msg.style.textAlign = "center"; // centraliza horizontalmente
-        msg.style.whiteSpace = "pre-wrap"; // respeita o \n
+        msg.style.padding = "10px 14px";
+        msg.style.borderRadius = "12px";
+        msg.style.maxWidth = "70%";
+        msg.style.wordWrap = "break-word";
+        msg.style.whiteSpace = "pre-wrap";
+        msg.style.backgroundColor = sender === "bot" ? "#f0f0f0" : "#9c45e8";
+        msg.style.color = sender === "bot" ? "#000" : "#fff";
         msg.textContent = `${sender === "bot" ? "🤖" : "🧑"} ${text}`;
-        chatWindow.appendChild(msg);
+
+        msgContainer.appendChild(msg);
+        chatWindow.appendChild(msgContainer);
         chatWindow.scrollTop = chatWindow.scrollHeight;
     }
+
 
     // Respostas automáticas
     const respostas = {
@@ -90,26 +109,61 @@ document.addEventListener("DOMContentLoaded", function () {
         idade: "Para se inscrever em qualquer curso da Zero Um Cursos, é necessário ter no mínimo 14 anos e possuir CPF válido, além de uma conta de e-mail ativa para cadastro.",
         pagamento: "Aceitamos diversas formas de pagamento: cartões de crédito, PIX e boleto bancário. As opções aparecem no momento da compra, e você pode consultar detalhes e histórico de pagamentos na sua conta."
     };
-    // Abrir modal e enviar mensagens iniciais
+    // Função para mostrar instruções iniciais
+    function instrucoes() {
+        setTimeout(() => addMessage("bot", "Você pode me perguntar sobre: 'curso', 'senha', 'certificado', 'suporte', 'celular', 'idade' ou 'pagamento' e mais."),1000);
+        etapa = "perguntando";
+    }
+
+    // Processa a pergunta do usuário
+    function processarPergunta(pergunta) {
+        let resposta = "Desculpe, não entendi sua pergunta. Pode reformular?";
+        for (let chave in respostas) {
+            if (pergunta.includes(chave)) {
+                resposta = respostas[chave];
+                break;
+            }
+        }
+
+        historico.push({ pergunta: pergunta, resposta: resposta });
+        setTimeout(() =>  addMessage("bot", resposta),500);
+
+        // Segunda resposta do bot oferecendo continuar ou parar
+        setTimeout(() => {
+            setTimeout(() => addMessage("bot", "Aqui está a informação que encontrei. Você quer continuar perguntando ou finalizar o chat? (responda 'continuar' ou 'parar')"), 2000);
+            etapa = "continuarOuParar";
+        }, 600);
+    }
+
+    // Finaliza o chat perguntando se resolveu
+    function finalizarChat() {
+        setTimeout(() => addMessage("bot", "Você conseguiu resolver seu problema? (responda 'sim' ou 'não')"), 2000);
+        etapa = "finalizar";
+    }
+
+    // Resposta final do bot
+    function respostaFinal(respostaUsuario) {
+        if (respostaUsuario.toLowerCase() === "sim") {
+            setTimeout(() =>  addMessage("bot", "Fico feliz em ter ajudado! 😊"), 500);
+        } else {
+            setTimeout(() => addMessage("bot", "Desculpe por não conseguir ajudar completamente. 😔 Entre em contato pelo email suporte@zeroum.com para mais detalhes."),500);
+        }
+        console.log("Histórico da conversa:", historico);
+        etapa = "concluido";
+    }
+
+    // Abrir modal
     ajudaLink.addEventListener("click", function (e) {
         e.preventDefault();
         faqModal.style.display = "flex";
-
         chatWindow.innerHTML = "";
-
-        // Primeira mensagem: boas-vindas
-        setTimeout(() => {
-            addMessage("bot", "Olá, tudo bem? 😊 Sou seu assistente virtual e estou aqui para ajudá-lo com qualquer dúvida sobre informações sobre nossos cursos, certificados, formas de pagamento, suporte e mais..\nVocê pode me perguntar sobre: 'curso', 'senha', 'certificado', 'suporte', 'celular', 'idade' ou 'pagamento'.");
-        }, 400);
-
-        
+        addMessage("bot", "Olá, tudo bem? 😊 Sou seu assistente virtual e estou aqui para ajudá-lo com qualquer dúvida sobre nosso site...");
+        setTimeout(instrucoes, 500);
     });
 
     // Fechar modal
     closeFaq.addEventListener("click", () => faqModal.style.display = "none");
-    window.addEventListener("click", (e) => {
-        if (e.target === faqModal) faqModal.style.display = "none";
-    });
+    window.addEventListener("click", e => { if (e.target === faqModal) faqModal.style.display = "none"; });
 
     // Expande/recolhe respostas
     document.querySelectorAll(".faq-question").forEach(btn => {
@@ -119,25 +173,38 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Enviar pergunta
+    // Envia pergunta e controla fluxo
     sendBtn.addEventListener("click", () => {
         const pergunta = userInput.value.trim().toLowerCase();
-        if (pergunta === "") return;
+        if (!pergunta) return;
         addMessage("user", pergunta);
         userInput.value = "";
 
-        let resposta = "Desculpe, não entendi sua pergunta. Pode reformular?";
-        for (let chave in respostas) {
-            if (pergunta.includes(chave)) {
-                resposta = respostas[chave];
+        switch (etapa) {
+            case "perguntando":
+                processarPergunta(pergunta);
                 break;
-            }
+            case "continuarOuParar":
+                if (pergunta === "continuar") {
+                    instrucoes();
+                } else if (pergunta === "parar") {
+                    finalizarChat();
+                } else {
+                    addMessage("bot", "Opção inválida! Por favor, responda 'continuar' ou 'parar'.");
+                }
+                break;
+            case "finalizar":
+                if (["sim", "não", "nao"].includes(pergunta)) {
+                    respostaFinal(pergunta);
+                } else {
+                    addMessage("bot", "Por favor, responda apenas 'sim' ou 'não'.");
+                }
+                break;
+            case "concluido":
+                addMessage("bot", "O chat foi finalizado. Se quiser, pode abrir novamente fechando a aba ajuda e abrindo novamente.");
+                break;
         }
-
-        setTimeout(() => addMessage("bot", resposta), 600);
     });
 
-    userInput.addEventListener("keypress", e => {
-        if (e.key === "Enter") sendBtn.click();
-    });
+    userInput.addEventListener("keypress", e => { if (e.key === "Enter") sendBtn.click(); });
 });

@@ -10,32 +10,32 @@ public class HomeController : Controller
 
     public HomeController(AppDbContext context)
     {
-        _context = context; 
+        _context = context;
     }
 
 
 
     public IActionResult Index()
     {
-       return View(); 
+        return View();
     }
 
     public IActionResult RecuperarSenha()
     {
-        return View(); 
+        return View();
     }
 
-    
+
     public IActionResult Dashboard()
     {
 
-        return View(); 
+        return View();
 
     }
 
     public IActionResult Faq()
     {
-       
+
         return View();
     }
 
@@ -58,7 +58,7 @@ public class HomeController : Controller
 
             _context.Alunos.Add(novoAluno);
 
- 
+
             await _context.SaveChangesAsync();
 
 
@@ -76,7 +76,7 @@ public class HomeController : Controller
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
         {
             ViewData["Erro"] = "E-mail e senha são obrigatórios.";
-            return View("Index"); 
+            return View("Index");
         }
 
 

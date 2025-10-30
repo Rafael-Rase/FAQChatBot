@@ -1,116 +1,129 @@
 ﻿@{
-    Layout = null; // Desativa o layout padrão do ASP.NET
+    Layout = null; // Desativa o layout padrão do ASP.NET. 
 }
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Zero Um Cursos</title>
+    <meta charset="UTF-8"> <!-- permite acentos e caracteres especiais -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- responsivo em celulares e tablets -->
+    <title>Dashboard - Zero Um Cursos</title> <!-- Título que aparece na aba do navegador -->
 
-    <link rel="stylesheet" href="~/css/styles.css"> <!-- CSS principal -->
 
+    <!-- Arquivos de CSS -->
+    <link rel="stylesheet" href="~/css/styles.css"> <!-- CSS principal do site -->
+    <link rel="stylesheet" href="~/css/dashboard.css" /> <!-- CSS específico do dashboard -->
+
+    <!-- CSS interno específico desta página -->
     <style>
         /* Container principal do dashboard */
         .dashboard-container {
-            display: flex; /* Sidebar + Conteúdo */
-            min-height: 100vh;
+            display: flex; 
+            min-height: 100vh; 
             background-color: #000000;
         }
 
         /* Sidebar lateral */
         .sidebar {
-            width: 250px;
-            background-color: #111111;
-            padding: 20px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            width: 250px; 
+            background-color: #111111; 
+            padding: 20px; 
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); 
             color: #ffffff;
-            display: flex;
+            display: flex; 
             flex-direction: column;
-            align-items: center;
+            align-items: center; 
         }
 
+            /* Título da sidebar */
             .sidebar h2 {
-                color: #9c45e8;
-                margin-bottom: 30px;
-                font-size: 1.5em;
+                color: #9c45e8; 
+                margin-bottom: 30px; 
+                font-size: 1.5em; 
             }
 
+        /* Links da sidebar */
         .nav-link {
-            display: block;
-            width: 100%;
-            padding: 12px 15px;
-            margin-bottom: 10px;
-            text-decoration: none;
-            color: #aaaaaa;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
-            font-weight: bold;
+            display: block; 
+            width: 100%; 
+            padding: 12px 15px; 
+            margin-bottom: 10px; 
+            text-decoration: none; 
+            color: #aaaaaa; 
+            border-radius: 5px; 
+            transition: background-color 0.3s, color 0.3s; 
+            font-weight: bold; 
         }
 
+            /* Efeito hover e ativo nos links */
             .nav-link:hover,
             .nav-link.active {
-                background-color: #2a2a2a;
+                background-color: #2a2a2a; 
                 color: #ffffff;
                 border-left: 3px solid #9c45e8;
-                padding-left: 12px;
+                padding-left: 12px; 
             }
 
-        /* Conteúdo principal */
+        /* Conteúdo principal do dashboard */
         .main-content {
-            flex-grow: 1;
-            padding: 40px;
-            background-color: #0d0d0d;
+            flex-grow: 1; /* Ocupa todo o espaço restante ao lado da sidebar */
+            padding: 40px; 
+            background-color: #0d0d0d; 
         }
 
+        /* Bloco central de informação do dashboard */
         .dashboard-content {
-            background-color: #1a1a1a;
-            padding: 40px;
-            border-radius: 10px;
-            text-align: center;
-            width: 100%;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            background-color: #1a1a1a; 
+            padding: 40px; 
+            border-radius: 10px; 
+            text-align: center; 
+            width: 100%; 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
         }
 
+            /* Título dentro do dashboard */
             .dashboard-content h1 {
-                color: #9c45e8;
-                font-size: 3em;
+                color: #9c45e8; 
+                font-size: 3em; /* Grande */
                 margin-bottom: 5px;
                 font-weight: 700;
-                text-shadow: 0 0 5px rgba(156, 69, 232, 0.5);
+                text-shadow: 0 0 5px rgba(156, 69, 232, 0.5); 
             }
 
+            /* Parágrafo abaixo do título */
             .dashboard-content p {
-                color: #ffffff;
+                color: #ffffff; 
                 font-size: 1.4em;
                 margin-bottom: 30px;
-                font-weight: 300;
-                line-height: 1.4;
+                font-weight: 300; 
+                line-height: 1.4; 
             }
 
-        /* Cartões de curso */
+        /* Cartões de curso individuais */
         .course-card {
-            background-color: #2a2a2a;
+            background-color: #2a2a2a; 
             padding: 25px;
             border-radius: 8px;
-            margin-bottom: 20px;
-            text-align: left;
+            margin-bottom: 20px; 
+            text-align: left; 
             border-left: 5px solid #9c45e8;
-            transition: transform 0.2s;
+            transition: transform 0.2s; 
         }
 
+            /* Efeito quando o mouse passa sobre o cartão */
             .course-card:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                transform: translateY(-3px); /* Leve "levantar" o cartão */
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); 
             }
 
+            /* Título dentro do cartão */
             .course-card h3 {
                 color: #ffffff;
                 margin-bottom: 8px;
                 font-size: 1.5em;
             }
 
+            /* Texto dentro do cartão */
             .course-card p {
                 color: #aaaaaa;
                 font-size: 1em;
@@ -121,28 +134,38 @@
 
 <body class="dashboard">
 
+    <!-- Ícone de acessibilidade Libras fixo no canto inferior -->
     <div id="libras-icon">
-        <img src="@Url.Content("~/images/libras.png")"
+        <img src='@Url.Content("~/images/libras.png")'
              alt="Ícone de acessibilidade em Libras"
              width="40" height="40">
+        <!-- Caminho da imagem no servidor -->
     </div>
 
+
+
+    <!-- Container principal: sidebar + conteúdo -->
     <div class="dashboard-container">
 
-        <!-- Sidebar -->
+        <!-- Sidebar lateral -->
         <div class="sidebar">
             <h2>Zero Um Cursos</h2>
 
+            <!-- Links de navegação -->
             <a asp-controller="Home" asp-action="Dashboard" class="nav-link active">
-                🎓 Meus Cursos</a>
+                🎓 Meus Cursos
+            </a>
             <a asp-controller="Home" asp-action="Dashboard" class="nav-link">
-                📚 Biblioteca (Não disponível)</a>
+                📚 Biblioteca (Não disponível)
+            </a>
             <a asp-controller="Home" asp-action="Dashboard" class="nav-link">
-                ⚙ Configurações (Não disponível)</a>
+                ⚙ Configurações (Não disponível)
+            </a>
 
-            <!-- Botão para abrir FAQ -->
+            <!-- Botão de ajuda -->
             <a href="#" class="nav-link" id="ajuda-link">
-                ❓ Ajuda</a>
+                ❓ Ajuda
+            </a>
 
             <!-- Link de logout -->
             <a asp-controller="Home" asp-action="Index" id="logout-link" class="nav-link" style="margin-top: auto; color: #ff6b6b;">
@@ -156,6 +179,7 @@
                 <h1>Bem-vindo(a) ao Zero Um Cursos!</h1>
                 <p>Sua jornada de desenvolvimento tecnológico começa agora. Abaixo, seus cursos em andamento:</p>
 
+                <!-- Lista de cursos -->
                 <div class="course-list">
                     <div class="course-card">
                         <h3>Introdução ao HTML5 e CSS3</h3>
@@ -174,25 +198,24 @@
         </div>
     </div>
 
-    <!-- Modal FAQ (apenas um no body) -->
+    <!-- Modal de FAQ (inicialmente escondido) -->
     <div id="faq-modal" class="faq-modal">
         <div class="faq-content">
             <span id="close-faq" class="close-faq">&times;</span>
-            <div id="faq-section"></div> <!-- Aqui o JS vai preencher as perguntas -->
+            <div id="faq-section"></div> <!-- JS vai preencher perguntas aqui -->
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="~/js/meu-script.js"></script> <!-- Script do dashboard geral -->
-    <script src="~/js/FAQ.js"></script> <!-- Script do FAQ -->
+    <!-- Scripts JS -->
+    <script src="~/js/FAQ.js"></script> <!-- Script que controla o modal FAQ -->
 
     <script>
+        // Código JS para logout
         document.addEventListener("DOMContentLoaded", function() {
-            // Logout
             const logoutLink = document.getElementById("logout-link");
             logoutLink.addEventListener("click", function(event) {
-                event.preventDefault(); // Evita redirecionamento imediato
-                if (confirm("Tem certeza de que deseja sair?")) {
+                event.preventDefault(); // Evita sair imediatamente
+                if (confirm("Tem certeza de que deseja sair?")) { // Pergunta antes
                     window.location.href = this.href; // Redireciona se confirmar
                 }
             });

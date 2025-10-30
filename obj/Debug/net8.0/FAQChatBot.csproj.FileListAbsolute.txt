@@ -171,3 +171,4 @@ D:\FAQChatBot\FAQChatBot\obj\Debug\net8.0\refint\FAQChatBot.dll
 D:\FAQChatBot\FAQChatBot\obj\Debug\net8.0\FAQChatBot.pdb
 D:\FAQChatBot\FAQChatBot\obj\Debug\net8.0\FAQChatBot.genruntimeconfig.cache
 D:\FAQChatBot\FAQChatBot\obj\Debug\net8.0\ref\FAQChatBot.dll
+D:\FAQChatBot\FAQChatBot\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
